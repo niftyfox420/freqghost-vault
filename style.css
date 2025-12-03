@@ -1,94 +1,118 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
 }
 
 body {
-  background: #000;
-  color: #e4e4e4;
-  overflow-x: hidden;
+    background: #000;
+    overflow-x: hidden;
+    color: #e4e4e4;
 }
 
-/* Background animation */
-.bg {
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at 20% 20%, #1b1b1b, #000);
-  filter: blur(30px);
-  animation: pulse 8s infinite alternate;
-  z-index: -1;
+/* ========================= */
+/* BACKGROUND VIDEO LAYER    */
+/* ========================= */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.22;
+    z-index: -3;
 }
 
-@keyframes pulse {
-  0% { opacity: 0.7; transform: scale(1); }
-  100% { opacity: 0.4; transform: scale(1.2); }
+/* ========================= */
+/* CANVAS EFFECTS LAYER      */
+/* ========================= */
+#effects-canvas {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
 }
 
-/* Header */
+/* ========================= */
+/* TERMINAL HEADER           */
+/* ========================= */
 header {
-  text-align: center;
-  padding: 60px 20px 30px;
+    text-align: center;
+    padding-top: 70px;
+    padding-bottom: 30px;
 }
 
-.logo {
-  width: 120px;
-  opacity: 0.9;
-  filter: drop-shadow(0 0 12px #0ff);
+.terminal .boot {
+    display: inline-block;
+    color: #0ff;
+    opacity: 0.7;
+    font-size: 1rem;
+    font-family: "Consolas", monospace;
 }
 
-h1 {
-  font-size: 2.4rem;
-  margin-top: 10px;
-  color: #fff;
+.terminal .done {
+    color: #7fffd4;
+    opacity: 1;
 }
 
-.tagline {
-  margin-top: 6px;
-  font-size: 1rem;
-  opacity: 0.6;
+.vault-title {
+    font-size: 3rem;
+    color: #0ff;
+    text-shadow: 0 0 15px #0ff;
+    font-weight: 800;
+    letter-spacing: 5px;
+    margin-top: 20px;
+    display: inline-block;
 }
 
-/* Section */
+/* ========================= */
+/* SECTION TITLE             */
+/* ========================= */
 .section-title {
-  text-align: center;
-  font-size: 1.6rem;
-  margin-bottom: 20px;
-  margin-top: 20px;
+    text-align: center;
+    font-size: 1.8rem;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px #00bfff;
 }
 
-/* Track Grid */
+/* ========================= */
+/* TRACK GRID + CARDS        */
+/* ========================= */
 #track-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 28px;
-  padding: 0 20px 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+    padding: 0 20px 50px;
 }
 
 .track-card {
-  background: #111;
-  border: 1px solid #1f1f1f;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
-  transition: 0.3s;
+    background: rgba(15, 15, 25, 0.55);
+    border: 1px solid rgba(0, 255, 255, 0.25);
+    backdrop-filter: blur(6px);
+    padding: 20px;
+    border-radius: 14px;
+    transition: 0.3s;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.12);
 }
 
 .track-card:hover {
-  transform: translateY(-4px);
-  border-color: #0ff;
-  box-shadow: 0 0 20px rgba(0,255,255,0.2);
+    transform: translateY(-8px) scale(1.02);
+    border-color: #0ff;
+    box-shadow: 0 0 35px rgba(0, 255, 255, 0.4);
 }
 
 .track-title {
-  margin-bottom: 12px;
-  font-size: 1.1rem;
-  font-weight: 600;
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0ff;
+    text-shadow: 0 0 8px #0ff;
 }
 
 audio, video {
-  width: 100%;
-  border-radius: 8px;
-  outline: none;
+    width: 100%;
+    border-radius: 6px;
 }
