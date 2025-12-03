@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>FreqGhost Vault</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
+    <meta charset="UTF-8">
+    <title>FreqGhost Vault</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <script defer src="effects.js"></script>
 </head>
 
 <body>
 
-<!-- Background -->
-<div class="bg"></div>
+    <!-- VIDEO OVERLAY -->
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="assets/bg-loop.mp4" type="video/mp4">
+    </video>
 
-<!-- Header -->
-<header>
-  <img src="assets/logo.png" class="logo" alt="FreqGhost Logo">
-  <h1>FreqGhost: Underground Vault</h1>
-  <p class="tagline">hidden cuts • unlisted drops • raw energy</p>
-</header>
+    <!-- PARTICLES + GEOMETRY -->
+    <canvas id="effects-canvas"></canvas>
 
-<!-- Track List -->
-<section id="tracks-container">
-  <h2 class="section-title">The Vault</h2>
-  <div id="track-grid">
-    <!-- Auto-loaded tracks appear here -->
-  </div>
-</section>
+    <!-- TERMINAL HEADER -->
+    <header>
+        <h1 class="terminal">
+            <span class="boot">$ initializing FreqGhost_Vault System...</span><br>
+            <span class="boot">$ loading tracks...</span><br>
+            <span class="boot done">$ system ready.</span><br><br>
+            <span class="vault-title">FREQGHOST VAULT</span>
+        </h1>
+    </header>
+
+    <!-- TRACK GRID -->
+    <section id="tracks-container">
+        <h2 class="section-title">THE VAULT</h2>
+        <div id="track-grid"></div>
+    </section>
 
 </body>
 </html>
