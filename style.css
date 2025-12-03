@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background: #000;
+  color: #e4e4e4;
+  overflow-x: hidden;
+}
+
+/* Background animation */
+.bg {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, #1b1b1b, #000);
+  filter: blur(30px);
+  animation: pulse 8s infinite alternate;
+  z-index: -1;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.7; transform: scale(1); }
+  100% { opacity: 0.4; transform: scale(1.2); }
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 60px 20px 30px;
+}
+
+.logo {
+  width: 120px;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 12px #0ff);
+}
+
+h1 {
+  font-size: 2.4rem;
+  margin-top: 10px;
+  color: #fff;
+}
+
+.tagline {
+  margin-top: 6px;
+  font-size: 1rem;
+  opacity: 0.6;
+}
+
+/* Section */
+.section-title {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+/* Track Grid */
+#track-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  padding: 0 20px 60px;
+}
+
+.track-card {
+  background: #111;
+  border: 1px solid #1f1f1f;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  transition: 0.3s;
+}
+
+.track-card:hover {
+  transform: translateY(-4px);
+  border-color: #0ff;
+  box-shadow: 0 0 20px rgba(0,255,255,0.2);
+}
+
+.track-title {
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+audio, video {
+  width: 100%;
+  border-radius: 8px;
+  outline: none;
+}
