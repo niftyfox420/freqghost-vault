@@ -1,4 +1,4 @@
-/* RESET */
+/* =============== RESET =============== */
 * {
     margin: 0;
     padding: 0;
@@ -6,138 +6,160 @@
     font-family: "Montserrat", sans-serif;
 }
 
-/* PAGE BACKGROUND */
 body {
-    background: #03050a;
+    background: #05070d;
     color: #e5faff;
     overflow-x: hidden;
-    position: relative;
 }
 
-/* ================================================= */
-/* NEON HORIZON GRID                                 */
-/* ================================================= */
-#neon-horizon {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 200%;
-    height: 55vh;
-    background-image:
-        linear-gradient(#0ff 2px, transparent 2px),
-        linear-gradient(90deg, #0ff 2px, transparent 2px);
-    background-size: 70px 70px;
-    transform: perspective(700px) rotateX(78deg);
-    transform-origin: bottom;
-    opacity: 0.25;
-    animation: horizonPulse 3s infinite alternate;
+/* =============== BACKGROUND =============== */
+#sun {
+    position: absolute;
+    top: 4vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, #00eaff, #007bff 60%, transparent 75%);
+    filter: blur(12px);
+    opacity: 0.7;
     z-index: -3;
+    border-radius: 50%;
 }
 
-@keyframes horizonPulse {
-    0% { opacity: 0.2; filter: drop-shadow(0 0 8px #0ff); }
-    100% { opacity: 0.35; filter: drop-shadow(0 0 18px #0ff); }
+#grid {
+    position: absolute;
+    bottom: -10vh;
+    left: 50%;
+    transform: translateX(-50%) perspective(600px) rotateX(80deg);
+    width: 160vw;
+    height: 60vh;
+    background-image:
+        linear-gradient(#00ffff33 2px, transparent 2px),
+        linear-gradient(90deg, #00ffff33 2px, transparent 2px);
+    background-size: 70px 70px;
+    opacity: 0.25;
+    z-index: -2;
 }
 
-/* ================================================= */
-/* STARFIELD BACKGROUND                               */
-/* ================================================= */
-#stars {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -5;
-}
-
-/* ================================================= */
-/* HERO SECTION                                       */
-/* ================================================= */
+/* =============== HERO =============== */
 .hero {
-    position: relative;
     text-align: center;
-    padding-top: 40px;       /* reduced from 120px */
-    padding-bottom: 10px;    /* reduced spacing */
+    padding-top: 20px;
+}
+
+.hero .fox {
+    width: 270px;
+    filter: drop-shadow(0 0 18px #00eaff);
 }
 
 .brand {
-    font-size: 4.5rem;
+    margin-top: 5px;
+    font-size: 3.5rem;
     font-weight: 900;
-    letter-spacing: 10px;
+    letter-spacing: 8px;
     color: #00eaff;
     text-shadow:
         0 0 18px #00eaff,
         0 0 40px #0088ff,
         0 0 120px #0066ff;
-    animation: brandFade 2s ease-out;
-}
-
-@keyframes brandFade {
-    from { opacity: 0; transform: translateY(40px) scale(1.2); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .tagline {
-    margin-top: 12px;
-    font-size: 1rem;
-    letter-spacing: 4px;
-    color: #87e9ffcc;
-    text-shadow: 0 0 10px #00c6ff;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    color: #8adfff;
 }
 
-/* ================================================= */
-/* TRACK GRID                                          */
-/* ================================================= */
+/* =============== VIDEO VAULT =============== */
 .section-title {
+    margin-top: 10px;
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: #00eaff;
-    margin-bottom: 40px;
-    text-shadow:
-        0 0 10px #00eaff,
-        0 0 25px #0099ff;
 }
 
-#track-grid {
+#video-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    padding: 0 40px 100px;
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding: 15px 30px 50px;
+    gap: 30px;
 }
 
-/* ================================================= */
-/* TRACK CARDS (NEON CART STYLE)                      */
-/* ================================================= */
-.track-card {
-    padding: 25px;
-    border-radius: 14px;
+.video-card {
     background: rgba(0, 12, 20, 0.55);
-    border: 1px solid #00d6ff44;
-    backdrop-filter: blur(10px);
-    box-shadow:
-        0 0 18px #00d6ff22,
-        inset 0 0 25px #00ffff11;
-    transition: 0.25s ease;
+    border: 1px solid #00d6ff33;
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 0 18px #00d6ff22;
 }
 
-.track-card:hover {
-    transform: translateY(-10px) scale(1.04);
-    border-color: #00ffff;
-    box-shadow:
-        0 0 40px #00eeffbb,
-        inset 0 0 35px #00ffff55;
-}
+/* =============== FREQGHOST CUSTOM VIDEO PLAYER =============== */
 
-.track-title {
-    margin-bottom: 15px;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #00faff;
-    text-shadow: 0 0 12px #00eaff;
-}
-
-audio {
+.fx-player {
     width: 100%;
+    background: #000;
+    border: 2px solid #00eaff;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 0 22px #00eaffaa;
+}
+
+.fx-player video {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+    outline: none;
+    background: #000;
+}
+
+/* CONTROLS */
+.fx-controls {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fx-play,
+.fx-full {
+    background: #00eaff22;
+    border: 1px solid #00eaff88;
+    color: #00eaff;
+    padding: 6px 12px;
     border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.fx-play:hover,
+.fx-full:hover {
+    background: #00eaff55;
+}
+
+.fx-progress {
+    flex: 1;
+    height: 6px;
+    background: transparent;
+    -webkit-appearance: none;
+}
+
+.fx-progress::-webkit-slider-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #00eaff;
+    cursor: pointer;
+}
+
+.fx-volume {
+    width: 80px;
+    height: 6px;
+}
+
+/* Time Display */
+.fx-time {
+    font-size: 0.8rem;
+    color: #9beaff;
 }
 
