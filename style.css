@@ -21,6 +21,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
+    pointer-events: none;
     background:
         radial-gradient(circle at 30% 20%, rgba(0, 180, 255, 0.3), transparent 60%),
         radial-gradient(circle at 70% 80%, rgba(0, 255, 255, 0.25), transparent 60%);
@@ -42,7 +43,7 @@ body::before {
     bottom: 0;
     left: 0;
     width: 140%;
-    height: 70%;
+    height: 90%;
     background-image:
         linear-gradient(#00ffff33 2px, transparent 2px),
         linear-gradient(90deg, #00aaff33 2px, transparent 2px);
@@ -51,6 +52,7 @@ body::before {
     transform-origin: bottom;
     animation: gridGlow 4s infinite alternate;
     z-index: -4;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%);
 }
 
 @keyframes gridGlow {
