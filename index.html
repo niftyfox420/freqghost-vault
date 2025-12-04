@@ -1,271 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FreqGhost Vault</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FreqGhost Vault</title>
 
-    <style>
-        /* RESET */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Montserrat", sans-serif;
-        }
+<style>
+    /* RESET */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
+    }
 
-        body {
-            background: #05070d;
-            color: #e5faff;
-            overflow-x: hidden;
-        }
+    body {
+        background: #05070d;
+        color: #e5faff;
+        overflow-x: hidden;
+        height: 100%;
+    }
 
-        /* ===================================================== */
-        /* HERO BACKGROUND LAYERS                                */
-        /* ===================================================== */
+    /* ===================================================== */
+    /* BACKGROUND LAYERS                                     */
+    /* ===================================================== */
 
-        /* Outrun Sun */
-        #sun {
-            position: absolute;
-            top: 8vh;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 480px;
-            height: 480px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #00eaff, #007bff 60%, transparent 70%);
-            filter: blur(15px) brightness(1.4);
-            opacity: 0.75;
-            z-index: -3;
-        }
+    #sun {
+        position: absolute;
+        top: 4vh;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 350px;
+        height: 350px;
+        border-radius: 50%;
+        background: radial-gradient(circle, #00eaff, #007bff 60%, transparent 75%);
+        filter: blur(12px) brightness(1.4);
+        opacity: 0.7;
+        z-index: -3;
+    }
 
-        /* Horizon Grid */
-        #grid {
-            position: absolute;
-            bottom: -12vh;
-            left: 50%;
-            transform: translateX(-50%) perspective(700px) rotateX(82deg);
-            width: 200vw;
-            height: 70vh;
-            background-image:
-                linear-gradient(#00ffff55 2px, transparent 2px),
-                linear-gradient(90deg, #00ffff55 2px, transparent 2px);
-            background-size: 80px 80px;
-            opacity: 0.25;
-            z-index: -2;
-            animation: gridGlow 3s infinite alternate;
-        }
+    #grid {
+        position: absolute;
+        bottom: -10vh;
+        left: 50%;
+        transform: translateX(-50%) perspective(600px) rotateX(80deg);
+        width: 160vw;
+        height: 60vh;
+        background-image:
+            linear-gradient(#00ffff55 2px, transparent 2px),
+            linear-gradient(90deg, #00ffff55 2px, transparent 2px);
+        background-size: 70px 70px;
+        opacity: 0.25;
+        z-index: -2;
+        animation: gridGlow 3s infinite alternate;
+    }
 
-        @keyframes gridGlow {
-            0% { opacity: 0.22; filter: drop-shadow(0 0 10px #00eaff); }
-            100% { opacity: 0.42; filter: drop-shadow(0 0 22px #00eaff); }
-        }
+    @keyframes gridGlow {
+        0% { opacity: 0.22; filter: drop-shadow(0 0 10px #00eaff); }
+        100% { opacity: 0.40; filter: drop-shadow(0 0 20px #00eaff); }
+    }
 
-        /* Fog Overlay */
-        #fog {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 50% 80%, #00eaff22, transparent 70%);
-            filter: blur(90px);
-            z-index: -1;
-        }
+    #fog {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 50% 80%, #00eaff22, transparent 70%);
+        filter: blur(80px);
+        z-index: -1;
+    }
 
-        /* Starfield */
-        #stars {
-            position: fixed;
-            inset: 0;
-            z-index: -5;
-        }
+    #stars {
+        position: fixed;
+        inset: 0;
+        z-index: -5;
+    }
 
-        /* ===================================================== */
-        /* HERO SECTION                                          */
-        /* ===================================================== */
-        .hero {
-            position: relative;
-            text-align: center;
-            padding-top: 120px;
-            padding-bottom: 40px;
-        }
+    /* ===================================================== */
+    /* HERO SECTION                                          */
+    /* ===================================================== */
 
-        /* Fox Poster Image */
-        .hero img {
-            width: 420px;
-            max-width: 80%;
-            display: block;
-            margin: 0 auto;
-            position: relative;
-            z-index: 3;
-            filter: drop-shadow(0 0 20px #00eaff);
-            animation: foxFloat 5s ease-in-out infinite;
-        }
+    .hero {
+        text-align: center;
+        padding-top: 20px;
+        padding-bottom: 0px;
+    }
 
-        @keyframes foxFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-        }
+    .hero img {
+        width: 300px;
+        max-width: 80%;
+        margin: 0 auto 5px;
+        filter: drop-shadow(0 0 18px #00eaff);
+        animation: foxFloat 5s ease-in-out infinite;
+    }
 
-        /* Title */
-        .brand {
-            margin-top: 20px;
-            font-size: 4rem;
-            font-weight: 900;
-            letter-spacing: 10px;
-            color: #00eaff;
-            text-shadow:
-                0 0 18px #00eaff,
-                0 0 40px #0088ff,
-                0 0 120px #0066ff;
-            animation: titleFlicker 2.6s ease-out;
-        }
+    @keyframes foxFloat {
+        0%,100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+    }
 
-        @keyframes titleFlicker {
-            0% { opacity: 0; transform: translateY(40px) scale(1.15); }
-            40% { opacity: 1; }
-            55% { opacity: 0.6; }
-            70% { opacity: 1; }
-            100% { transform: translateY(0) scale(1); opacity: 1; }
-        }
+    .brand {
+        margin-top: 5px;
+        font-size: 3.5rem;
+        font-weight: 900;
+        letter-spacing: 8px;
+        color: #00eaff;
+        text-shadow:
+            0 0 18px #00eaff,
+            0 0 40px #0088ff,
+            0 0 100px #0066ff;
+        animation: titleFlicker 2s ease-out;
+    }
 
-        /* Subtagline */
-        .tagline {
-            font-size: 1rem;
-            margin-top: 10px;
-            color: #8adfff;
-            letter-spacing: 4px;
-            opacity: 0.8;
-        }
+    @keyframes titleFlicker {
+        0% { opacity: 0; transform: translateY(40px) scale(1.15); }
+        40% { opacity: 1; }
+        55% { opacity: 0.6; }
+        70% { opacity: 1; }
+        100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
 
-        /* ===================================================== */
-        /* TRACK SECTION                                         */
-        /* ===================================================== */
-        .section-title {
-            margin-top: 50px;
-            text-align: center;
-            font-size: 2rem;
-            color: #00eaff;
-            text-shadow: 0 0 10px #00eaff;
-        }
+    .tagline {
+        font-size: 0.9rem;
+        margin-top: 2px;
+        color: #8adfff;
+        letter-spacing: 4px;
+    }
 
-        #track-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            padding: 0 40px 100px;
-            gap: 40px;
-            margin-top: 35px;
-        }
+    /* ===================================================== */
+    /* VIDEO VAULT                                           */
+    /* ===================================================== */
 
-        .track-card {
-            padding: 25px;
-            background: rgba(0, 12, 20, 0.55);
-            border: 1px solid #00d6ff44;
-            border-radius: 14px;
-            backdrop-filter: blur(12px);
-            box-shadow:
-                0 0 18px #00d6ff22,
-                inset 0 0 25px #00ffff11;
-            transition: 0.25s ease;
-        }
+    .section-title {
+        margin-top: 5px;
+        text-align: center;
+        font-size: 1.6rem;
+        color: #00eaff;
+        text-shadow: 0 0 10px #00eaff;
+    }
 
-        .track-card:hover {
-            transform: translateY(-10px) scale(1.04);
-            border-color: #00ffff;
-            box-shadow:
-                0 0 40px #00eeffbb,
-                inset 0 0 30px #00ffff55;
-        }
+    #video-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        padding: 10px 30px 50px;
+        gap: 20px;
+    }
 
-        .track-title {
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #00faff;
-        }
+    .video-card {
+        background: rgba(0, 12, 20, 0.55);
+        border: 1px solid #00d6ff44;
+        border-radius: 14px;
+        padding: 18px;
+        backdrop-filter: blur(12px);
+        box-shadow:
+            0 0 15px #00d6ff22,
+            inset 0 0 18px #00ffff11;
+        transition: 0.2s ease;
+    }
 
-        audio {
-            width: 100%;
-            border-radius: 6px;
-        }
-    </style>
+    .video-card:hover {
+        transform: translateY(-6px) scale(1.03);
+        border-color: #00ffff;
+        box-shadow:
+            0 0 35px #00eeffbb,
+            inset 0 0 30px #00ffff55;
+    }
+
+    .video-title {
+        margin-bottom: 10px;
+        font-size: 1rem;
+        font-weight: 700;
+        color: #00faff;
+    }
+
+    video {
+        width: 100%;
+        border-radius: 10px;
+        outline: none;
+    }
+</style>
 </head>
 
 <body>
 
-    <!-- Background Layers -->
-    <div id="sun"></div>
-    <div id="grid"></div>
-    <div id="fog"></div>
-    <canvas id="stars"></canvas>
+<!-- BACKGROUND LAYERS -->
+<div id="sun"></div>
+<div id="grid"></div>
+<div id="fog"></div>
+<canvas id="stars"></canvas>
 
-    <!-- Hero -->
-    <section class="hero">
-        <img src="dc60d98fbe4704080c2aed1f275bd19a_59075a15d668a42bf5e3eef440094625.avif" alt="FreqGhost Fox">
-        <h1 class="brand">FREQGHOST</h1>
-        <p class="tagline">NEON VAULT // SYNTHWAVE ARTIST COLLECTION</p>
-    </section>
+<!-- HERO -->
+<section class="hero">
+    <img src="fox.avif" alt="FreqGhost Fox">
+    <h1 class="brand">FREQGHOST</h1>
+    <p class="tagline">NEON VAULT // SYNTHWAVE ARTIST COLLECTION</p>
+</section>
 
-    <!-- Tracks -->
-    <section class="tracks">
-        <h2 class="section-title">THE VAULT</h2>
+<!-- VIDEO VAULT -->
+<h2 class="section-title">THE VAULT</h2>
 
-        <div id="track-grid">
+<div id="video-grid">
 
-            <div class="track-card">
-                <p class="track-title">Track Name 1</p>
-                <audio controls src=""></audio>
-            </div>
+    <div class="video-card">
+        <p class="video-title">No Plate No Fear Remix</p>
+        <video controls src="no plate no fear remix.mp4"></video>
+    </div>
 
-            <div class="track-card">
-                <p class="track-title">Track Name 2</p>
-                <audio controls src=""></audio>
-            </div>
+</div>
 
-            <div class="track-card">
-                <p class="track-title">Track Name 3</p>
-                <audio controls src=""></audio>
-            </div>
+<!-- STARFIELD SCRIPT -->
+<script>
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
 
-        </div>
-    </section>
+function resize() {
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+}
+window.addEventListener("resize", resize);
+resize();
 
-    <!-- Starfield Script -->
-    <script>
-        const canvas = document.getElementById("stars");
-        const ctx = canvas.getContext("2d");
+let stars = [];
+for (let i = 0; i < 200; i++) {
+    stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        s: Math.random() * 2 + 1
+    });
+}
 
-        function resize() {
-            canvas.width = innerWidth;
-            canvas.height = innerHeight;
-        }
-
-        window.addEventListener("resize", resize);
-        resize();
-
-        let stars = [];
-        for (let i = 0; i < 200; i++) {
-            stars.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                s: Math.random() * 2 + 1
-            });
-        }
-
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            ctx.fillStyle = "#00ffff55";
-            stars.forEach(star => {
-                ctx.beginPath();
-                ctx.arc(star.x, star.y, star.s, 0, Math.PI * 2);
-                ctx.fill();
-                star.y += star.s * 0.15;
-                if (star.y > canvas.height) star.y = -2;
-            });
-
-            requestAnimationFrame(draw);
-        }
-
-        draw();
-    </script>
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#00ffff55";
+    stars.forEach(star => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.s, 0, Math.PI * 2);
+        ctx.fill();
+        star.y += star.s * 0.15;
+        if (star.y > canvas.height) star.y = -2;
+    });
+    requestAnimationFrame(draw);
+}
+draw();
+</script>
 
 </body>
 </html>
