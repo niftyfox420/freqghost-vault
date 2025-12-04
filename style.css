@@ -8,189 +8,177 @@
 
 body {
     background: #000;
-    color: #dffeff;
+    color: #eaffff;
     overflow-x: hidden;
     position: relative;
 }
 
-/* ================================================= */
-/*  3D LAYER STACK — BACKGROUND + FOG + SCANLINES    */
-/* ================================================= */
-body::before {
-    content: "";
+/* ===================================================== */
+/* BACKGROUND — REAL NEON VOID (NOT WEAK)                */
+/* ===================================================== */
+#neon-void {
     position: fixed;
     inset: 0;
-    z-index: -5;
-    background: radial-gradient(circle at 50% 30%, #00eaff22, transparent 70%),
-                radial-gradient(circle at 80% 75%, #0066ff1a, transparent 75%);
-    animation: bgPulse 8s infinite ease-in-out alternate;
+    z-index: -10;
+    background:
+        radial-gradient(circle at 50% 50%, #00eaff15 0%, transparent 60%),
+        radial-gradient(circle at 20% 80%, #009dff10 0%, transparent 70%),
+        radial-gradient(circle at 80% 20%, #00ffee0d 0%, transparent 70%);
+    filter: blur(10px);
+    animation: voidPulse 6s infinite alternate ease-in-out;
 }
 
-body::after {
-    /* Vertical scanlines */
-    content: "";
+@keyframes voidPulse {
+    from { opacity: 0.6; transform: scale(1); }
+    to   { opacity: 1;   transform: scale(1.15); }
+}
+
+/* ===================================================== */
+/* PARTICLE STREAM (ACTUAL MOTION, NOT STATIC DOTS)      */
+/* ===================================================== */
+#particle-stream {
     position: fixed;
     inset: 0;
-    z-index: -4;
+    pointer-events: none;
+    z-index: -9;
     background-image: repeating-linear-gradient(
         to bottom,
-        rgba(255,255,255,0.015) 0px,
-        rgba(255,255,255,0.015) 1px,
-        transparent 2px
+        transparent 0,
+        transparent 94vh,
+        rgba(0, 255, 255, 0.12) 95vh,
+        transparent 96vh
     );
-    pointer-events: none;
-    opacity: 0.3;
+    animation: particleFall 12s infinite linear;
 }
 
-/* Fog layer */
-#fog {
+@keyframes particleFall {
+    from { background-position-y: 0; }
+    to   { background-position-y: 96vh; }
+}
+
+/* ===================================================== */
+/* CIRCUIT LINES — MOVING ENERGY                         */
+/* ===================================================== */
+#circuit-lines {
     position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -3;
-    background: radial-gradient(circle at 50% 50%, #00ffff0f, transparent 60%);
-    filter: blur(40px);
-    animation: fogMove 14s infinite alternate ease-in-out;
-}
-
-/* ===================== ANIMATIONS ===================== */
-@keyframes bgPulse {
-    0% { filter: hue-rotate(0deg) brightness(0.8); }
-    100% { filter: hue-rotate(40deg) brightness(1.1); }
-}
-
-@keyframes fogMove {
-    0% { transform: translateY(0px) scale(1); }
-    100% { transform: translateY(-40px) scale(1.2); }
-}
-
-/* ================================================= */
-/*              HOLOGRAPHIC GRID FLOOR               */
-/* ================================================= */
-#grid-floor {
-    content: "";
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    height: 60vh;
-    width: 140%;
-    z-index: -2;
+    inset: 0;
+    z-index: -8;
     background-image:
-        linear-gradient(#00ffff44 2px, transparent 2px),
-        linear-gradient(90deg, #0088ff44 2px, transparent 2px);
+        linear-gradient(90deg, rgba(0,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(0,255,255,0.08) 1px, transparent 1px);
+    background-size: 80px 80px;
+    animation: circuitGlow 8s infinite ease-in-out;
+}
+
+@keyframes circuitGlow {
+    0% { opacity: 0.1; filter: hue-rotate(0deg); }
+    100% { opacity: 0.25; filter: hue-rotate(40deg); }
+}
+
+/* ===================================================== */
+/* HOLOGRAM FLOOR — SHARP, AGGRESSIVE                    */
+/* ===================================================== */
+#holo-floor {
+    position: fixed;
+    bottom: -10vh;
+    left: 0;
+    width: 140%;
+    height: 70vh;
+    z-index: -6;
+    background-image:
+        linear-gradient(#00faff55 2px, transparent 2px),
+        linear-gradient(90deg, #00c6ff55 2px, transparent 2px);
     background-size: 60px 60px;
-    transform: perspective(500px) rotateX(68deg);
+    transform: perspective(700px) rotateX(68deg);
     transform-origin: bottom;
-    animation: gridShift 6s infinite alternate ease-in-out;
+    animation: floorShift 5s infinite alternate ease-in-out;
 }
 
-@keyframes gridShift {
-    0% { opacity: 0.4; filter: drop-shadow(0 0 10px #0ff); }
-    100% { opacity: 0.7; filter: drop-shadow(0 0 25px #0ff); }
+@keyframes floorShift {
+    0% { opacity: 0.3; filter: brightness(0.7); }
+    100% { opacity: 0.9; filter: brightness(1.2) drop-shadow(0 0 20px #00eaff); }
 }
 
-/* ================================================= */
-/*                    HEADER                         */
-/* ================================================= */
+/* ===================================================== */
+/* VAULT TITLE — AGGRESSIVE, CLEAN, LASER-FIRED          */
+/* ===================================================== */
 header {
     text-align: center;
-    padding-top: 70px;
-    padding-bottom: 20px;
+    padding-top: 120px;
+    padding-bottom: 30px;
 }
 
 .vault-title {
-    font-size: 3.4rem;
+    font-size: 4rem;
     font-weight: 900;
+    letter-spacing: 9px;
     color: #00eaff;
-    letter-spacing: 6px;
     text-shadow:
-        0 0 12px #00eaff,
-        0 0 40px #00aaff,
-        0 0 90px #0077ff;
+        0 0 20px #00eaff,
+        0 0 40px #00bbee,
+        0 0 100px #0088ff;
+    animation: titleDrop 1.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* ================================================= */
-/*                   SECTION TITLE                   */
-/* ================================================= */
+@keyframes titleDrop {
+    0% { transform: translateY(-40px) scale(1.2); opacity: 0; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* SUBTITLE */
 .section-title {
     text-align: center;
-    color: #00d5ff;
-    font-size: 2rem;
-    margin: 40px 0 30px;
-    text-shadow:
-        0 0 12px #00bfff,
-        0 0 30px #0088ff;
+    margin-top: 5px;
+    font-size: 1.6rem;
+    color: #ffffff;
+    opacity: 0.8;
+    letter-spacing: 3px;
+    text-shadow: 0 0 20px #00baff99;
 }
 
-/* ================================================= */
-/*        TRACK GRID – NEW NEON HARD-STYLE           */
-/* ================================================= */
+/* ===================================================== */
+/* TRACK GRID — CLEAN, FLOATING, REAL NEON               */
+/* ===================================================== */
 #track-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 40px;
-    padding: 0 25px 80px;
+    padding: 0 35px 100px;
 }
 
-/* New glowing card style */
 .track-card {
-    background: rgba(0, 20, 30, 0.45);
     padding: 22px;
-    border-radius: 18px;
-    border: 1px solid #00d9ff66;
-    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    background: rgba(0, 13, 18, 0.55);
+    border: 1px solid #00d0ff55;
+    backdrop-filter: blur(14px);
     position: relative;
-    transition: 0.25s ease;
+    transition: 0.2s ease;
     box-shadow:
-        inset 0 0 20px #00eaff22,
-        0 0 25px #00caff33,
-        0 0 60px #0077ff22;
+        0 0 20px #00ddff22,
+        inset 0 0 25px #00ffff11;
 }
 
-/* Holographic moving border */
-.track-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    border: 2px solid transparent;
-    background: linear-gradient(120deg,
-        transparent,
-        #00ffff,
-        #0099ff,
-        transparent
-    );
-    background-size: 300% 300%;
-    opacity: 0.35;
-    animation: holoBorder 5s infinite linear;
-    z-index: -1;
-}
-
-@keyframes holoBorder {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 200% 50%; }
-}
-
+/* FLOAT LIFT */
 .track-card:hover {
-    transform: translateY(-8px) scale(1.04);
+    transform: translateY(-10px) scale(1.04);
+    border-color: #00faff;
     box-shadow:
-        0 0 30px #00eeffaa,
-        0 0 70px #0088ff88;
+        0 0 40px #00faff99,
+        inset 0 0 40px #00ffff33;
 }
 
 /* Title */
 .track-title {
+    color: #00f6ff;
     font-size: 1.3rem;
     font-weight: 800;
-    color: #00eeff;
+    text-shadow: 0 0 10px #00dfff;
     margin-bottom: 12px;
-    text-shadow: 0 0 10px #00eeff, 0 0 25px #00aaff;
 }
 
-/* Media */
 audio, video {
     width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 0 12px #0ff8;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #00eaff66;
 }
