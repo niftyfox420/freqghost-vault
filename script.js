@@ -2,7 +2,6 @@ async function loadTracks() {
     const resp = await fetch("tracks/");
     const text = await resp.text();
 
-    // Extract filenames
     const files = [...text.matchAll(/href="([^"]+)"/g)]
         .map(m => m[1])
         .filter(name => name.match(/\.(mp3|mp4)$/i));
