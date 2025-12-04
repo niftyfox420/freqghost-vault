@@ -14,61 +14,100 @@
             font-family: "Montserrat", sans-serif;
         }
 
-        /* PAGE BACKGROUND */
         body {
-            background: #03050a;
+            background: #05070d;
             color: #e5faff;
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* ================================================= */
-        /* NEON HORIZON GRID                                 */
-        /* ================================================= */
-        #neon-horizon {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 200%;
-            height: 55vh;
-            background-image:
-                linear-gradient(#0ff 2px, transparent 2px),
-                linear-gradient(90deg, #0ff 2px, transparent 2px);
-            background-size: 70px 70px;
-            transform: perspective(700px) rotateX(78deg);
-            transform-origin: bottom;
-            opacity: 0.25;
-            animation: horizonPulse 3s infinite alternate;
+        /* ===================================================== */
+        /* HERO BACKGROUND LAYERS                                */
+        /* ===================================================== */
+
+        /* Outrun Sun */
+        #sun {
+            position: absolute;
+            top: 8vh;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 480px;
+            height: 480px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #00eaff, #007bff 60%, transparent 70%);
+            filter: blur(15px) brightness(1.4);
+            opacity: 0.75;
             z-index: -3;
         }
 
-        @keyframes horizonPulse {
-            0% { opacity: 0.2; filter: drop-shadow(0 0 8px #0ff); }
-            100% { opacity: 0.35; filter: drop-shadow(0 0 18px #0ff); }
+        /* Horizon Grid */
+        #grid {
+            position: absolute;
+            bottom: -12vh;
+            left: 50%;
+            transform: translateX(-50%) perspective(700px) rotateX(82deg);
+            width: 200vw;
+            height: 70vh;
+            background-image:
+                linear-gradient(#00ffff55 2px, transparent 2px),
+                linear-gradient(90deg, #00ffff55 2px, transparent 2px);
+            background-size: 80px 80px;
+            opacity: 0.25;
+            z-index: -2;
+            animation: gridGlow 3s infinite alternate;
         }
 
-        /* ================================================= */
-        /* STARFIELD BACKGROUND                               */
-        /* ================================================= */
+        @keyframes gridGlow {
+            0% { opacity: 0.22; filter: drop-shadow(0 0 10px #00eaff); }
+            100% { opacity: 0.42; filter: drop-shadow(0 0 22px #00eaff); }
+        }
+
+        /* Fog Overlay */
+        #fog {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 80%, #00eaff22, transparent 70%);
+            filter: blur(90px);
+            z-index: -1;
+        }
+
+        /* Starfield */
         #stars {
             position: fixed;
             inset: 0;
-            width: 100%;
-            height: 100%;
             z-index: -5;
         }
 
-        /* ================================================= */
-        /* HERO SECTION                                       */
-        /* ================================================= */
+        /* ===================================================== */
+        /* HERO SECTION                                          */
+        /* ===================================================== */
         .hero {
+            position: relative;
             text-align: center;
             padding-top: 120px;
-            padding-bottom: 60px;
+            padding-bottom: 40px;
         }
 
+        /* Fox Poster Image */
+        .hero img {
+            width: 420px;
+            max-width: 80%;
+            display: block;
+            margin: 0 auto;
+            position: relative;
+            z-index: 3;
+            filter: drop-shadow(0 0 20px #00eaff);
+            animation: foxFloat 5s ease-in-out infinite;
+        }
+
+        @keyframes foxFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+
+        /* Title */
         .brand {
-            font-size: 4.5rem;
+            margin-top: 20px;
+            font-size: 4rem;
             font-weight: 900;
             letter-spacing: 10px;
             color: #00eaff;
@@ -76,33 +115,35 @@
                 0 0 18px #00eaff,
                 0 0 40px #0088ff,
                 0 0 120px #0066ff;
-            animation: brandFade 2s ease-out;
+            animation: titleFlicker 2.6s ease-out;
         }
 
-        @keyframes brandFade {
-            from { opacity: 0; transform: translateY(40px) scale(1.2); }
-            to   { opacity: 1; transform: translateY(0) scale(1); }
+        @keyframes titleFlicker {
+            0% { opacity: 0; transform: translateY(40px) scale(1.15); }
+            40% { opacity: 1; }
+            55% { opacity: 0.6; }
+            70% { opacity: 1; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
         }
 
+        /* Subtagline */
         .tagline {
-            margin-top: 12px;
             font-size: 1rem;
+            margin-top: 10px;
+            color: #8adfff;
             letter-spacing: 4px;
-            color: #87e9ffcc;
-            text-shadow: 0 0 10px #00c6ff;
+            opacity: 0.8;
         }
 
-        /* ================================================= */
-        /* TRACK GRID                                          */
-        /* ================================================= */
+        /* ===================================================== */
+        /* TRACK SECTION                                         */
+        /* ===================================================== */
         .section-title {
+            margin-top: 50px;
             text-align: center;
             font-size: 2rem;
             color: #00eaff;
-            margin-bottom: 40px;
-            text-shadow:
-                0 0 10px #00eaff,
-                0 0 25px #0099ff;
+            text-shadow: 0 0 10px #00eaff;
         }
 
         #track-grid {
@@ -110,17 +151,15 @@
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             padding: 0 40px 100px;
             gap: 40px;
+            margin-top: 35px;
         }
 
-        /* ================================================= */
-        /* TRACK CARDS (NEON CART STYLE)                      */
-        /* ================================================= */
         .track-card {
             padding: 25px;
-            border-radius: 14px;
             background: rgba(0, 12, 20, 0.55);
             border: 1px solid #00d6ff44;
-            backdrop-filter: blur(10px);
+            border-radius: 14px;
+            backdrop-filter: blur(12px);
             box-shadow:
                 0 0 18px #00d6ff22,
                 inset 0 0 25px #00ffff11;
@@ -132,7 +171,7 @@
             border-color: #00ffff;
             box-shadow:
                 0 0 40px #00eeffbb,
-                inset 0 0 35px #00ffff55;
+                inset 0 0 30px #00ffff55;
         }
 
         .track-title {
@@ -140,7 +179,6 @@
             font-size: 1.2rem;
             font-weight: 700;
             color: #00faff;
-            text-shadow: 0 0 12px #00eaff;
         }
 
         audio {
@@ -152,19 +190,20 @@
 
 <body>
 
-    <!-- Neon Horizon Grid -->
-    <div id="neon-horizon"></div>
-
-    <!-- Starfield Canvas -->
+    <!-- Background Layers -->
+    <div id="sun"></div>
+    <div id="grid"></div>
+    <div id="fog"></div>
     <canvas id="stars"></canvas>
 
-    <!-- Hero Title -->
+    <!-- Hero -->
     <section class="hero">
+        <img src="dc60d98fbe4704080c2aed1f275bd19a_59075a15d668a42bf5e3eef440094625.avif" alt="FreqGhost Fox">
         <h1 class="brand">FREQGHOST</h1>
-        <p class="tagline">NEON VAULT // SYNTHWAVE NOIR COLLECTION</p>
+        <p class="tagline">NEON VAULT // SYNTHWAVE ARTIST COLLECTION</p>
     </section>
 
-    <!-- Tracks Section -->
+    <!-- Tracks -->
     <section class="tracks">
         <h2 class="section-title">THE VAULT</h2>
 
@@ -188,7 +227,7 @@
         </div>
     </section>
 
-    <!-- ⭐ STARFIELD SCRIPT ⭐ -->
+    <!-- Starfield Script -->
     <script>
         const canvas = document.getElementById("stars");
         const ctx = canvas.getContext("2d");
@@ -230,5 +269,3 @@
 
 </body>
 </html>
-
-
