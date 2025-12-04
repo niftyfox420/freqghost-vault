@@ -54,9 +54,10 @@ body {
 /* HERO SECTION                                       */
 /* ================================================= */
 .hero {
+    position: relative;
     text-align: center;
-    padding-top: 120px;
-    padding-bottom: 60px;
+    padding-top: 40px;       /* reduced from 120px */
+    padding-bottom: 10px;    /* reduced spacing */
 }
 
 .brand {
