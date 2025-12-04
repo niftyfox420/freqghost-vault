@@ -12,22 +12,22 @@ resize();
 window.onresize = resize;
 
 function makeParticles() {
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < 100; i++) {
         particles.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
             size: Math.random() * 2 + 1,
-            speedY: Math.random() * 0.4 + 0.1
+            speedY: Math.random() * 0.4 + 0.2
         });
     }
 }
 
 function makeShapes() {
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 5; i++) {
         shapes.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
-            size: Math.random() * 80 + 40,
+            size: Math.random() * 120 + 60,
             rot: Math.random() * Math.PI * 2,
             speed: Math.random() * 0.005 + 0.003
         });
@@ -41,7 +41,7 @@ function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // PARTICLES
-    ctx.fillStyle = "rgba(0,255,255,0.7)";
+    ctx.fillStyle = "rgba(0,255,255,0.75)";
     particles.forEach(p => {
         p.y += p.speedY;
         if (p.y > canvas.height) p.y = -10;
@@ -55,9 +55,8 @@ function animate() {
         ctx.rotate(s.rot);
         ctx.strokeStyle = "rgba(0,255,255,0.4)";
         ctx.lineWidth = 2;
-        ctx.strokeRect(-s.size / 2, -s.size / 2, s.size, s.size);
+        ctx.strokeRect(-s.size/2, -s.size/2, s.size, s.size);
         ctx.restore();
-
         s.rot += s.speed;
     });
 
@@ -65,3 +64,4 @@ function animate() {
 }
 
 animate();
+
